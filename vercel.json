@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/studio",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/studio/signup",
+      "destination": "/index.html"
+    }
+  ]
+}
