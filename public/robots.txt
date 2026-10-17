@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+# Cloudflare Pages Function serves the canonical sitemap URL in production.

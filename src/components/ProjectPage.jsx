@@ -1,0 +1,11 @@
+import React from 'react';
+import { ArrowLeft, ArrowUpRight } from 'lucide-react';
+import { cleanUrl, safeAsset, youtubeEmbed } from '../lib/supabase';
+export default function ProjectPage({ content, project, navigate }) {
+  const { profile } = content;
+  const youtube = youtubeEmbed(project.videoUrl);
+  const video = cleanUrl(project.videoUrl);
+  const cover = safeAsset(project.coverUrl);
+  const nativeVideo = /\.(mp4|webm|ogg)(?:[?#]|$)/i.test(video);
+  return <div className="site-shell detail-shell"><header className="site-header"><div className="content-width header-inner"><button className="brand-sign" onClick={()=>navigate('/')} aria-label="Back to portfolio">K<span>.</span></button><button className="nav-cta" onClick={()=>navigate('/')}>View full portfolio <ArrowUpRight size={16}/></button></div></header><main className="content-width case-study"><button className="case-back" onClick={()=>navigate('/')}><ArrowLeft size={17}/> Back to portfolio</button><span className="eyebrow"><span className="eyebrow-line"/> SELECTED WORK · {project.category}</span><h1>{project.title}</h1><p className="case-lead">{project.description}</p><div className="case-media">{youtube ? <iframe title={project.title} src={youtube} allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowFullScreen referrerPolicy="strict-origin-when-cross-origin"/> : nativeVideo ? <video controls playsInline poster={cover} src={video}/> : cover ? <img src={cover} alt={project.title}/> : <div className="case-media-empty">Selected work by {profile.name}</div>}</div><div className="case-facts"><div><small>CREATOR</small><strong>{profile.name}</strong></div>{project.brand&&<div><small>BRAND</small><strong>{project.brand}</strong></div>}{project.format&&<div><small>FORMAT</small><strong>{project.format}</strong></div>}{project.result&&<div><small>CAMPAIGN RESULT</small><strong>{project.result}</strong></div>}</div>{video&&!youtube&&!nativeVideo&&<p><a href={video} target="_blank" rel="noopener noreferrer">Watch published work <ArrowUpRight size={16}/></a></p>}<div className="case-cta"><h2>Have a story worth sharing?</h2><a className="btn btn-primary" href="/#contact">Let's collaborate <ArrowUpRight size={16}/></a></div></main></div>;
+}

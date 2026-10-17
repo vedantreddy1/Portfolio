@@ -1,0 +1,18 @@
+# node_modules
+# dist
+# .env
+# .env.local
+# .env.*.local
+# .DS_Store
+# .dev.vars
+# .wrangler
+# *.log
+node_modules/
+dist/
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+.wrangler/
+*.log
